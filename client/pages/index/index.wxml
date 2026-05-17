@@ -1,0 +1,55 @@
+<swiper class="banner" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{4000}}" circular="{{true}}">
+  <swiper-item wx:for="{{banners}}" wx:key="banner_id" bindtap="onBannerTap" data-item="{{item}}">
+    <image class="banner-img" src="{{item.image_url}}" mode="aspectFill" />
+  </swiper-item>
+  <swiper-item wx:if="{{banners.length === 0}}">
+    <view class="banner-placeholder">⚽ 足球俱乐部</view>
+  </swiper-item>
+</swiper>
+
+<view class="nav-grid">
+  <view class="nav-item" bindtap="goPage" data-url="/pages/schedule/schedule">
+    <text class="nav-icon">🏆</text>
+    <text class="nav-label">赛程</text>
+  </view>
+  <view class="nav-item" bindtap="goPage" data-url="/pages/team/team">
+    <text class="nav-icon">👥</text>
+    <text class="nav-label">球队</text>
+  </view>
+  <view class="nav-item" bindtap="goPage" data-url="/pages/activity/activity">
+    <text class="nav-icon">📋</text>
+    <text class="nav-label">活动</text>
+  </view>
+  <view class="nav-item" bindtap="goPage" data-url="/pages/activity/activity">
+    <text class="nav-icon">📊</text>
+    <text class="nav-label">积分榜</text>
+  </view>
+</view>
+
+<view class="section-title">近期活动</view>
+<view class="card" wx:for="{{activities}}" wx:key="activity_id" bindtap="goDetail" data-id="{{item.activity_id}}">
+  <view class="activity-header">
+    <text class="activity-title">{{item.title}}</text>
+    <text class="tag tag-{{item.status === 'ended' ? 'ended' : 'ongoing'}}">{{item.status === 'ended' ? '已结束' : '进行中'}}</text>
+  </view>
+  <view class="activity-meta">
+    <text>🕐 {{item.start_time}}</text>
+    <text>📍 {{item.location}}</text>
+  </view>
+</view>
+
+<view class="section-title">下一场比赛</view>
+<view class="card match-card" wx:if="{{nextMatch}}" bindtap="goMatch" data-id="{{nextMatch.match_id}}">
+  <view class="match-teams">
+    <view class="team-info">
+      <image class="team-logo" src="{{nextMatch.home_team_logo || '/images/team_default.png'}}" />
+      <text>{{nextMatch.home_team_name}}</text>
+    </view>
+    <text class="vs">VS</text>
+    <view class="team-info">
+      <image class="team-logo" src="{{nextMatch.away_team_logo || '/images/team_default.png'}}" />
+      <text>{{nextMatch.away_team_name}}</text>
+    </view>
+  </view>
+  <view class="match-time">{{nextMatch.match_time}} · {{nextMatch.venue}}</view>
+</view>

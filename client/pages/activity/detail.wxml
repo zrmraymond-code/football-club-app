@@ -1,0 +1,21 @@
+<view class="detail-wrap">
+  <image class="cover" src="{{act.cover_image || '/images/activity_default.png'}}" mode="aspectFill" wx:if="{{act.cover_image}}" />
+  <view class="card">
+    <text class="title">{{act.title}}</text>
+    <view class="info-line">🕐 {{act.start_time}} ~ {{act.end_time}}</view>
+    <view class="info-line">📍 {{act.location}}</view>
+    <view class="info-line">👥 报名 {{act.current_participants}} / {{act.max_participants || '不限'}}</view>
+    <view class="info-line" wx:if="{{act.registration_deadline}}">⏰ 报名截止 {{act.registration_deadline}}</view>
+  </view>
+
+  <view class="card">
+    <text class="section-label">活动介绍</text>
+    <text class="desc">{{act.description || '暂无介绍'}}</text>
+  </view>
+
+  <view class="card" wx:if="{{act.status === 'ended'}}"><text class="ended-text">此活动已结束</text></view>
+
+  <button class="signup-btn {{signedUp ? 'signed' : ''}}" wx:if="{{act.status ==='ongoing' || act.status ==='draft'}}" disabled="{{signedUp || act.current_participants >= act.max_participants && act.max_participants > 0}}" bindtap="onSignup">
+    {{signedUp ? '✅ 已报名' : act.current_participants >= act.max_participants && act.max_participants > 0 ? '报名已满' : '立即报名'}}
+  </button>
+</view>

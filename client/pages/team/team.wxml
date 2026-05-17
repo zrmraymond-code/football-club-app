@@ -1,0 +1,10 @@
+<view class="card team-item" wx:for="{{list}}" wx:key="team_id" bindtap="goDetail" data-id="{{item.team_id}}">
+  <image class="team-logo-lg" src="{{item.team_logo || '/images/team_default.png'}}" />
+  <view class="team-info-text">
+    <text class="team-name">{{item.team_name}}</text>
+    <text class="team-meta">{{item.player_count || 0}} 名球员</text>
+  </view>
+  <text class="arrow">›</text>
+</view>
+
+<view class="empty" wx:if="{{list.length === 0}}">暂无球队</view>

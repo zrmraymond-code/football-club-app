@@ -1,0 +1,22 @@
+<view class="card match-card-big">
+  <view class="match-vs">
+    <view class="team-col">
+      <image class="logo-med" src="{{match.home_team_logo || '/images/team_default.png'}}" />
+      <text class="team-name-med">{{match.home_team_name}}</text>
+    </view>
+    <view class="vs-col">
+      <text class="score-big" wx:if="{{match.status === 'finished'}}">{{match.home_score}} : {{match.away_score}}</text>
+      <text class="vs-text" wx:else>VS</text>
+    </view>
+    <view class="team-col">
+      <image class="logo-med" src="{{match.away_team_logo || '/images/team_default.png'}}" />
+      <text class="team-name-med">{{match.away_team_name}}</text>
+    </view>
+  </view>
+  <view class="match-info">
+    <text>🕐 {{match.match_time}}</text>
+    <text>📍 {{match.venue}}</text>
+    <text>🏆 {{match.tournament_name}} · {{match.round}}</text>
+    <text>📌 {{match.status === 'pending' ? '未开始' : match.status === 'finished' ? '已结束' : '进行中'}}</text>
+  </view>
+</view>

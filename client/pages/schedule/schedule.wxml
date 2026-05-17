@@ -1,0 +1,24 @@
+<view class="card match-item" wx:for="{{list}}" wx:key="match_id" bindtap="goDetail" data-id="{{item.match_id}}">
+  <view class="match-date">{{item.match_time}}</view>
+  <view class="match-teams-row">
+    <view class="team-side">
+      <image class="mini-logo" src="{{item.home_team_logo || '/images/team_default.png'}}" />
+      <text class="team-label">{{item.home_team_name}}</text>
+    </view>
+    <view class="score-area">
+      <text class="score-text" wx:if="{{item.status === 'finished'}}">{{item.home_score}} : {{item.away_score}}</text>
+      <text class="score-text" wx:else>VS</text>
+      <text class="match-round">{{item.round}}</text>
+    </view>
+    <view class="team-side">
+      <image class="mini-logo" src="{{item.away_team_logo || '/images/team_default.png'}}" />
+      <text class="team-label">{{item.away_team_name}}</text>
+    </view>
+  </view>
+  <view class="meta-row">
+    <text>{{item.tournament_name}}</text>
+    <text class="tag tag-{{item.status}}">{{item.status === 'pending' ? '未开始' : item.status === 'finished' ? '已结束' : '进行中'}}</text>
+  </view>
+</view>
+
+<view class="empty" wx:if="{{list.length === 0}}">暂无赛程</view>

@@ -1,0 +1,24 @@
+<view class="card team-header">
+  <image class="logo-big" src="{{team.team_logo || '/images/team_default.png'}}" />
+  <text class="team-name-big">{{team.team_name}}</text>
+  <view class="team-detail-info">
+    <text wx:if="{{team.home_ground}}">📍 {{team.home_ground}}</text>
+    <text wx:if="{{team.coach_name}}">🏋️ 教练：{{team.coach_name}}</text>
+  </view>
+</view>
+
+<view class="card">
+  <view class="player-header">
+    <text class="section-title">球员名单</text>
+    <text class="player-count">{{team.players?.length || 0}} 人</text>
+  </view>
+  <view class="player-item" wx:for="{{team.players}}" wx:key="id">
+    <image class="player-avatar" src="{{item.avatar || '/images/avatar_default.png'}}" />
+    <view class="player-info">
+      <text class="player-name">{{item.name}}</text>
+      <text class="player-position">{{item.position || '-'}}</text>
+    </view>
+    <text class="player-number" wx:if="{{item.jersey_number}}">#{{item.jersey_number}}</text>
+  </view>
+  <view class="empty" wx:if="{{!team.players || team.players.length === 0}}">暂无球员</view>
+</view>

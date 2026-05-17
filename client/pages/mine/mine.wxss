@@ -1,0 +1,20 @@
+.user-card { display: flex; align-items: center; gap: 14px; background: #fff; padding: 20px 16px; margin: 0; }
+.login-card { margin: 0; }
+.user-avatar { width: 56px; height: 56px; border-radius: 50%; background: #eee; }
+.user-info { flex: 1; }
+.user-name { font-size: 17px; font-weight: 600; display: block; }
+.user-phone { font-size: 13px; color: #888; display: block; margin-top: 2px; }
+.user-role-tag { font-size: 11px; color: #1a73e8; background: #e3efff; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-top: 4px; }
+
+.menu-group { padding: 0; }
+.menu-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 16px; font-size: 15px; border-bottom: 1px solid #f0f0f0;
+}
+.menu-item:last-child { border-bottom: none; }
+.menu-arrow { color: #ccc; font-size: 18px; }
+
+.logout-btn {
+  margin: 24px 16px; border: 1px solid #ddd; background: #fff;
+  color: #e74c3c; border-radius: 8px; font-size: 15px; height: 44px; line-height: 44px;
+}

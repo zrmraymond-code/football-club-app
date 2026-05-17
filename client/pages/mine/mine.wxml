@@ -1,0 +1,33 @@
+<view class="user-card" wx:if="{{user}}">
+  <image class="user-avatar" src="{{user.avatar || '/images/avatar_default.png'}}" />
+  <view class="user-info">
+    <text class="user-name">{{user.name}}</text>
+    <text class="user-phone">{{user.phone || '未绑定手机'}}</text>
+    <text class="user-role-tag">{{user.role === 'admin' ? '管理员' : '球员'}}</text>
+  </view>
+</view>
+
+<view class="user-card login-card" wx:else bindtap="onLogin">
+  <image class="user-avatar" src="/images/avatar_default.png" />
+  <view class="user-info">
+    <text class="user-name" style="color:#1a73e8;">点击登录</text>
+    <text class="user-phone">微信授权一键登录</text>
+  </view>
+</view>
+
+<view class="card menu-group" wx:if="{{user}}">
+  <view class="menu-item" bindtap="goPage" data-url="/pages/mine/mine?tab=signup">
+    <text>📋 我的报名</text>
+    <text class="menu-arrow">›</text>
+  </view>
+  <view class="menu-item" bindtap="showAttendance">
+    <text>📊 出勤记录</text>
+    <text class="menu-arrow">›</text>
+  </view>
+  <view class="menu-item" bindtap="showMatches">
+    <text>🏆 我的赛事</text>
+    <text class="menu-arrow">›</text>
+  </view>
+</view>
+
+<button class="logout-btn" wx:if="{{user}}" bindtap="onLogout">退出登录</button>

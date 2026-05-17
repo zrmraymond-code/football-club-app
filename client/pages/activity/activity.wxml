@@ -1,0 +1,24 @@
+<view class="filter-bar">
+  <view class="filter-item {{filter === 'all' ? 'active' : ''}}" bindtap="setFilter" data-filter="all">全部</view>
+  <view class="filter-item {{filter === 'ongoing' ? 'active' : ''}}" bindtap="setFilter" data-filter="ongoing">进行中</view>
+  <view class="filter-item {{filter === 'ended' ? 'active' : ''}}" bindtap="setFilter" data-filter="ended">已结束</view>
+</view>
+
+<view class="card" wx:for="{{list}}" wx:key="activity_id" bindtap="goDetail" data-id="{{item.activity_id}}">
+  <view class="act-top">
+    <image class="act-cover" src="{{item.cover_image || '/images/activity_default.png'}}" mode="aspectFill" wx:if="{{item.cover_image}}" />
+    <view class="act-info">
+      <text class="act-title">{{item.title}}</text>
+      <text class="tag tag-{{item.status === 'ended' ? 'ended' : 'ongoing'}}">
+        {{item.status === 'ended' ? '已结束' : item.status === 'draft' ? '草稿' : '进行中'}}
+      </text>
+    </view>
+  </view>
+  <view class="act-meta">
+    <text>🕐 {{item.start_time}}</text>
+    <text>📍 {{item.location}}</text>
+    <text>👥 {{item.current_participants}}/{{item.max_participants || '不限'}}</text>
+  </view>
+</view>
+
+<view class="empty" wx:if="{{list.length === 0}}">暂无活动</view>
